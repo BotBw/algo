@@ -1,0 +1,5 @@
+# !/bin/bash
+cp luogu.cpp ${1}
+mv ${1} codes/
+git add codes/${1}
+cp template.cpp luogu.cpp
