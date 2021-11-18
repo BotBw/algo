@@ -1,4 +1,5 @@
 # !/bin/bash
+rm luogu.out
 cp luogu.cpp ${1}
 mv ${1} codes/
 git add codes/${1}
