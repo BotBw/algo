@@ -1,3 +1,3 @@
 # !/bin/bash
 g++ luogu.cpp -g -W -std=c++11 -o luogu.out
-./luogu.out < input.txt
+./luogu.out < input.txt >> output.txt
