@@ -1,4 +1,6 @@
+.DS_Store
+.vscode/
+luogu.out.dSYM/
 luogu.out
 input.txt
 output.txt
-.DS_Store
