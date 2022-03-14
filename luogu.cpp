@@ -7,8 +7,9 @@ typedef unsigned long long ull;
 int max(int n,...) {va_list args;va_start(args, n);int ret = INT_MIN;FOR(i, 0, n-1)ret = max(ret, va_arg(args, int));va_end(args);return ret;}
 int min(int n,...) {va_list args;va_start(args, n);int ret = INT_MAX;FOR(i, 0, n-1)ret = min(ret, va_arg(args, int));va_end(args);return ret;}
 
-#ifdef LEET
+// #include "leet.h"
 
+#ifdef LEET
 #else
 int main() {
 
