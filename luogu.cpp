@@ -13,6 +13,6 @@ int min(int n,...) {va_list args;va_start(args, n);int ret = INT_MAX;FOR(i, 0, n
 #else
 int main() {
 
-    return 0;
+  return 0;
 }
 #endif
