@@ -57,6 +57,7 @@ struct SegmentTree {
 
   void push_down(int i, int tl, int tr) {
     if (tl == tr) return;
+    if (lazy[i] == 0) return;
     int mi = (tl + tr) / 2;
     t[i * 2] += (mi - tl + 1) * lazy[i];
     t[i * 2 + 1] += (tr - mi) * lazy[i];
