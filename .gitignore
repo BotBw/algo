@@ -1,5 +1,6 @@
 .DS_Store
 .vscode/
+.idea/
 luogu.out.dSYM/
 luogu.out
 input.txt
