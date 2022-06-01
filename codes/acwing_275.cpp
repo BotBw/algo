@@ -6,7 +6,7 @@ typedef pair<int, int> PII;
 #define FOR(i, a, b) for(int i = (a); i <= (b); ++i)
 #define _FOR(i, a, b) for(int i = (a); i >= (b); --i)
 
-const int N = 11;
+const int N = 51;
 
 int f[N][N][N][N];
 
@@ -17,21 +17,22 @@ int dy1[] = {0, 0, -1, -1};
 int dx2[] = {-1, 0, -1, 0};
 int dy2[] = {0, -1, 0, -1};
 
-int n;
+int n, m;
 #ifdef LEET
 #include "leet.h"
 #else
 int main() {
-  cin >> n;
+  cin >> m >> n;
 
-  int a, b, c;
-  while(cin >> a >> b >> c && !(!a && !b && !c)) {
-    g[a][b] = max(g[a][b], c);
+  FOR(i, 1, m) {
+    FOR(j, 1, n) {
+      cin >> g[i][j];
+    }
   }
 
-  FOR(x1, 1, n) {
+  FOR(x1, 1, m) {
     FOR(y1, 1, n) {
-      FOR(x2, 1, n) {
+      FOR(x2, 1, m) {
         FOR(y2, 1, n) {
           int maxx = 0;
           FOR(k, 0, 3) {
@@ -47,7 +48,7 @@ int main() {
       }
     }
   }
-  cout << f[n][n][n][n];
+  cout << f[m][n][m][n];
   return 0;
 }
 #endif
