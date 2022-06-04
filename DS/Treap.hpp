@@ -30,12 +30,7 @@ struct Treap {
       zag(root);
     }
   }
-  struct iterator {
-    node *nd;
-    iterator operator++() {
-      return get_next()
-    }
-  }
+
   ~Treap() { delete[] t; }
   void insert(int key) { insert(root, key); }
   void remove(int key) { remove(root, key); }
