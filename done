@@ -1,6 +1,11 @@
 # !/bin/bash
 rm luogu.out
-cp luogu.cpp ${1}
+if test -f "codes/${1}"; then
+    echo "${1} exists."
+    exit
+fi
+cat freq.h > ${1}
+grep -v '^#include "freq.h"$' luogu.cpp >> ${1}
 mv ${1} codes/
 git add codes/${1}
 cp template luogu.cpp
