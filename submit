@@ -1,0 +1,1 @@
+cat freq.h luogu.cpp | grep -v '^#include "freq.h"$' | pbcopy

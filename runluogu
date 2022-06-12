@@ -1,3 +1,8 @@
 # !/bin/bash
 g++ -D DEBUG luogu.cpp -ggdb -Wall -std=c++11 -o luogu.out
-./luogu.out < input.txt > output.txt
+
+if [ $# -eq 0 ];  then
+  ./luogu.out < input.txt
+else
+  ./luogu.out < input.txt > output.txt
+fi

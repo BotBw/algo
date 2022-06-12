@@ -1,8 +1,8 @@
 # !/bin/bash
 rm luogu.out
 if test -f "codes/${1}"; then
-    echo "${1} exists."
-    exit
+    echo "${1} exists.";
+    exit;
 fi
 cat freq.h > ${1}
 grep -v '^#include "freq.h"$' luogu.cpp >> ${1}
