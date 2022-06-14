@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <vector>
 #include <queue>
+#include <stack>
 #include <cmath>
 #include <unordered_map>
 #include <unordered_set>

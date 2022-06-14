@@ -24,7 +24,7 @@ typedef pair<int, int> PII;
 
 #endif
 
-const int N = 100, M = N*2;
+const int N = 1e4 + 10, M = 5e4 + 10;
 
 int n, m;
 
@@ -34,19 +34,22 @@ struct edge {
   int v, next;
 } e[M];
 
-void add(int a, int b) {
-  e[++ecnt] = {b, h[a]};
-  h[a] = ecnt;
+void add(int u, int v) {
+  e[++ecnt] = {v, h[u]};
+  h[u] = ecnt;
 }
+
 int cc[N], sz[N], cccnt;
 int dfsn[N], low[N], dfscnt;
 bool st[N];
+
+int outd[N];
 stack<int> s;
 
 void tarjan(int u) {
-  dfsn[u] = low[u] = ++dfscnt;
-  s.push(u);
+  dfsn[u] = low[u] = ++ dfscnt;
   st[u] = true;
+  s.push(u);
   for(int i = h[u]; i; i = e[i].next) {
     int v = e[i].v;
     if(!dfsn[v]) {
@@ -56,9 +59,9 @@ void tarjan(int u) {
       low[u] = min(low[u], dfsn[v]);
     }
   }
-  if(low[u] == dfsn[u]) {
-    int cur;
+  if(dfsn[u] == low[u]) {
     ++cccnt;
+    int cur;
     do {
       cur = s.top();
       s.pop();
@@ -76,10 +79,31 @@ int main() {
     cin >> a >> b;
     add(a, b);
   }
-  FOR(i, 1, n) {
-    if(!dfsn[i]) {
-      tarjan(i);
+  FOR(u, 1, n) {
+    if(!dfsn[u]) {
+      tarjan(u);
     }
   }
+  FOR(u, 1, n) {
+    for(int i = h[u]; i; i = e[i].next) {
+      int v = e[i].v;
+      int ccu = cc[u], ccv = cc[v];
+      if(ccu != ccv) {
+        outd[ccu]++;
+      }
+    }
+  }
+  int ans = 0, sum = 0;
+  FOR(i, 1, cccnt) {
+    if(outd[i] == 0) {
+      ans++;
+      sum += sz[i];
+      if(ans > 1) {
+      sum = 0;
+      break;
+    }
+    }
+  }
+  cout << sum;
   return 0;
 }
