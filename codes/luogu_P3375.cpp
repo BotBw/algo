@@ -22,7 +22,7 @@ vector<int> preprocessor() {
   vector<int> f(s2.size(), 0);
   for(int i = 1; i < s2.size(); i++) {
     int j = f[i-1];
-    while(j > 0 && s2[i] != s2[j]) j = f[j-1];
+    while(j && s2[i] != s2[j]) j = f[j-1];
     if (s2[i] == s2[j]) j++;
     f[i] = j;
   }
