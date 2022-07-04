@@ -1,5 +1,5 @@
 # !/bin/bash
-rm luogu.out
+rm test.out
 if test -f "codes/${1}"; then
     echo "${1} already exists.";
     exit;
