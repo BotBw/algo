@@ -1,5 +1,5 @@
 # !/bin/bash
-g++ -D DEBUG luogu.cpp -ggdb -Wall -std=c++11 -o test.out
+g++ -D DEBUG luogu.cpp -Wall -Wextra -Wno-sign-conversion -Wshadow -fsanitize=address,undefined -std=c++17 -o test.out
 
 if [ $# -eq 0 ];  then
   ./test.out < input.txt
