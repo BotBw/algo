@@ -7,6 +7,10 @@ using namespace std;
 string to_string(string s) {
   return '"' + s + '"';
 }
+
+string to_string(char c) {
+  return "\'" + string(1,c) + "\'";
+}
  
 string to_string(const char* s) {
   return to_string((string) s);
@@ -45,5 +49,6 @@ void debug_out(Head H, Tail... T) {
 }
 
 #define debug(...) cerr << "[" << #__VA_ARGS__ << "]:", debug_out(__VA_ARGS__)
+#define debugif(condition, args...) if(condition) cerr << "[" << #args << "]:", debug_out(args)
 
 #endif
