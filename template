@@ -3,7 +3,7 @@
 #include "debug.h"
 #else
 #define debug(...) 42
-#define debug_if(x,y...) 42
+#define debugif(x,y...) 42
 #endif
 using namespace std;
 #define FOR(i, a, b) for(int i = (a); i <= (b); ++i)
@@ -11,7 +11,10 @@ using namespace std;
 #define INT_INF 0x3f3f3f3f
 #define LLONG_INF 0x3f3f3f3f3f3f3f3f
 typedef long long LL;
+typedef pair<int, int> PII;
 typedef pair<LL, LL> PLL;
+typedef vector<int> VI;
+typedef vector<LL> VLL;
 
 
 int main() {

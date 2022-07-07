@@ -19,6 +19,34 @@ typedef vector<LL> VLL;
 
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  
+  int T;
+  cin >> T;
+  FOR(t, 1, T) {
+    int n;
+    cin >> n;
+    int max1 = 0;
+    FOR(i, 1, n) {
+      int a;
+      cin >> a;
+      max1 = max(max1, a);
+    }
+    int m;
+    cin >> m;
+    int max2 = 0;
+    FOR(i, 1, m) {
+      int a;
+      cin >> a;
+      max2 = max(max2, a);
+    }
+    if(max1 == max2) {
+      cout << "Alice\nBob\n";
+    } else {
+      if(max1 > max2) {
+        cout << "Alice\nAlice\n";
+      } else {
+        cout << "Bob\nBob\n";
+      }
+    }
+  }
   return 0;
 }

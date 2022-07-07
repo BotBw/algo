@@ -19,6 +19,23 @@ typedef vector<LL> VLL;
 
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  
+  int T;
+  cin >> T;
+  FOR(t, 1, T) {
+    int n;
+    cin >> n;
+    VI a(n + 1);
+    FOR(i, 1, n) cin >> a[i];
+    int m;
+    cin >> m;
+    int sum_b = 0;
+    FOR(i, 1, m) {
+      int b;
+      cin >> b;
+      sum_b += b;
+      sum_b %= n;
+    }
+    cout << a[1 + sum_b] << '\n';
+  }
   return 0;
 }

@@ -19,6 +19,23 @@ typedef vector<LL> VLL;
 
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  
+  int T;
+  cin >> T;
+  FOR(t, 1 ,T) {
+    int n;
+    cin >> n;
+    VI a(n);
+    int sum = 0;
+    FOR(i, 0, n-1) cin >> a[i], sum += a[i];
+    int flag = false;
+    FOR(i, 0, n-1) {
+      if(sum - a[i] == (n - 1) * a[i]) {
+        flag = true;
+        break;
+      }
+    }
+    if(flag) cout << "YES\n";
+    else cout << "NO\n";
+  }
   return 0;
 }

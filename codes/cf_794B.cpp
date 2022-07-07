@@ -19,6 +19,22 @@ typedef vector<LL> VLL;
 
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  
+  int T;
+  cin >> T;
+  FOR(t, 1, T) {
+    int n;
+    cin >> n;
+    VI a(n);
+    FOR(i, 0, n-1) cin >> a[i];
+    int i = 1;
+    int res = 0;
+    while(i < n) {
+      if(a[i] < a[i-1]) {
+        res ++ ;
+        i += 2;
+      } else i++;
+    }
+    cout << res << '\n';
+  }
   return 0;
 }

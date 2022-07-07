@@ -11,14 +11,25 @@ using namespace std;
 #define INT_INF 0x3f3f3f3f
 #define LLONG_INF 0x3f3f3f3f3f3f3f3f
 typedef long long LL;
-typedef pair<int, int> PII;
 typedef pair<LL, LL> PLL;
 typedef vector<int> VI;
 typedef vector<LL> VLL;
 
-
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  
+  int T;
+  cin >> T;
+  FOR(t, 1, T) {
+    int n;
+    cin >> n;
+    int even = 0, odd = 0;
+    FOR(i, 1, n) {
+      int a;
+      cin >> a;
+      if(a & 1) odd++;
+      else even++;
+    }
+    cout << min(odd, even) << '\n';
+  }
   return 0;
 }
