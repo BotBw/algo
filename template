@@ -16,7 +16,6 @@ typedef pair<LL, LL> PLL;
 typedef vector<int> VI;
 typedef vector<LL> VLL;
 
-
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
   
