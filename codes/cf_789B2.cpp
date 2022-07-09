@@ -16,6 +16,25 @@ typedef pair<LL, LL> PLL;
 
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  
+  int T;
+  cin >> T;
+  FOR(t, 1, T) {
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    char pre = 'a';
+    int res1 = 0, res2 = 0;
+    for(int i = 0; i < n; i += 2) {
+      if(s[i] != s[i + 1]) {
+        res1++;
+      } else if(pre != s[i]) {
+        pre = s[i];
+        res2++;
+      }
+    }
+    if(!res2) res2++;
+    cout << res1 << ' ' << res2 << '\n';
+  }
   return 0;
 }

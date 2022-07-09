@@ -16,6 +16,29 @@ typedef pair<LL, LL> PLL;
 
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  
+  int t;
+  cin >> t;
+  FOR(tt, 1 , t) {
+    int n;
+    cin >> n;
+    vector<int> a(n + 1);
+    vector<int> state(n + 1);
+    int cnt = 0;
+    FOR(i, 1, n) {
+      cin >> a[i];
+      if(a[i] < 0) cnt++, a[i] = -a[i];
+    }
+    FOR(i, 1, cnt) a[i] = -a[i];
+    bool isSorted = true;
+    FOR(i, 2, n) {
+      if(a[i-1] > a[i]) {
+        isSorted = false;
+        break;
+      }
+    }
+
+    if(!isSorted) cout << "NO\n";
+    else cout << "YES\n";
+  }
   return 0;
 }
