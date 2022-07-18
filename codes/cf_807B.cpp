@@ -14,8 +14,31 @@ typedef long long ll;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
 
+int n;
+vector<int> a;
+
+void solve() {
+  cin >> n;
+  a = vector<int>(n);
+  FOR(i, 0, n-1) {
+    cin >> a[i];
+  }
+  bool firstPos = false;
+  ll cnt_0 = 0, sum = 0;
+  FOR(i, 0, n-2) {
+    if(!firstPos && a[i] > 0) firstPos = true;
+    if(firstPos && !a[i]) cnt_0++;
+    sum += a[i];
+  }
+  cout << sum + cnt_0 << "\n";
+}
+
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  
+  int tt;
+  cin >> tt;
+  FOR(t, 1, tt) {
+    solve();
+  }
   return 0;
 }

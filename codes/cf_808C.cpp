@@ -14,8 +14,27 @@ typedef long long ll;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
 
+int n, q;
+vector<int> a;
+vector<bool> choose;
+void solve() {
+  cin >> n >> q;
+  a = vector<int>(n + 1);
+  choose = vector<bool>(n + 1);
+  FOR(i, 1, n) cin >> a[i];
+  int cur = 0;
+  _FOR(i, n, 1) {
+    if(a[i] <= cur) choose[i] = true;
+    else if(cur < q) cur++, choose[i] = true;
+  }
+  FOR(i, 1, n) cout << choose[i];
+  cout << '\n';
+}
+
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  
+  int tt;
+  cin >> tt;
+  FOR(t, 1, tt) solve();
   return 0;
 }

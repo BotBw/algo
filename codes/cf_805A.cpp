@@ -10,12 +10,22 @@ using namespace std;
 #define _FOR(i, a, b) for(int i = (a); i >= (b); --i)
 #define INT_INF 0x3f3f3f3f
 #define LLONG_INF 0x3f3f3f3f3f3f3f3f
-typedef long long ll;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
+typedef long long LL;
+typedef pair<int, int> PII;
+typedef pair<LL, LL> PLL;
 
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  
+  int tt;
+  cin >> tt;
+  FOR(t, 1, tt) {
+    int m;
+    cin >> m;
+    int p = 1;
+    while(p * 10 <= m) {
+      p *= 10;
+    }
+    cout << (m - p) << '\n';
+  }
   return 0;
 }
