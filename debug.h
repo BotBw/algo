@@ -51,6 +51,5 @@ void debug_out(Head H, Tail... T) {
 }
 
 #define debug(...) cerr << "[" << #__VA_ARGS__ << "]:", debug_out(__VA_ARGS__)
-#define debugif(condition, args...) if(condition) cerr << "[" << #args << "]:", debug_out(args)
 
 #endif
