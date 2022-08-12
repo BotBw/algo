@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
-#ifdef DEBUG
-#include "debug.h"
-#else
-#define debug(...) 42
-#define debugif(x,y...) 42
-#endif
 using namespace std;
+#ifdef LOCAL
+#include "debug.h"
+#include "leet.h"
+#include "../mySTL/mySTL.h"
+#else
+#define debug(...)
+#endif
 #define FOR(i, a, b) for(int i = (a); i <= (int)(b); ++i)
 #define _FOR(i, a, b) for(int i = (a); i >= (int)(b); --i)
 #define INT_INF 0x3f3f3f3f
@@ -13,9 +14,12 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
 
-int main() {
-  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  
-  return 0;
-}
+class Solution {
+
+};
+

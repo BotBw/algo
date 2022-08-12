@@ -1,8 +1,3 @@
-#ifndef CUSTOMHASH_HPP
-#define CUSTOMHASH_HPP
-
-#include <stdlib.h>
-
 struct CustomHash {
     static uint64_t splitmix64(uint64_t x) {
         // http://xorshift.di.unimi.it/splitmix64.c
@@ -17,5 +12,3 @@ struct CustomHash {
         return splitmix64(x + FIXED_RANDOM);
     }
 };
-
-#endif

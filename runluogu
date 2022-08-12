@@ -1,8 +1,0 @@
-# !/bin/bash
-g++ -D DEBUG luogu.cpp -Wall -Wextra -Wno-sign-conversion -Wshadow -fsanitize=address,undefined -std=c++17 -o test.out
-
-if [ $# -eq 0 ];  then
-  ./test.out < input.txt
-else
-  ./test.out < input.txt > output.txt
-fi

@@ -1,9 +1,3 @@
-#ifndef DSU_HPP
-#define DSU_HPP
-
-#include <numeric>
-#include <vector>
-
 class dsu {
  public:
   std::vector<int> p;
@@ -30,5 +24,3 @@ class dsu {
     return false;
   }
 };
-
-#endif

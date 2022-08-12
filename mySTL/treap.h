@@ -1,26 +1,13 @@
-#ifndef TREAP_H
-#define TREAP_H
-
-#include <stdlib.h>
-
-#ifndef max
-#define max(a, b) ((a) > (b) ? (a) : (b))
-#endif
-
-#ifndef min
-#define min(a, b) ((a) > (b) ? (b) : (a))
-#endif
-
 struct node {
   int key, val, l, r, sz, cnt;
 };
 
-struct Treap {
+struct treap {
   static const int INF = 0x3f3f3f3f;
   node *t;
   int cnt;
   int root;
-  Treap(int n) : t(new node[n + 1]), cnt(0) {
+  treap(int n) : t(new node[n + 1]), cnt(0) {
     get_node(-INF);
     get_node(INF);
     root = 1;
@@ -31,7 +18,7 @@ struct Treap {
     }
   }
 
-  ~Treap() { delete[] t; }
+  ~treap() { delete[] t; }
   void insert(int key) { insert(root, key); }
   void remove(int key) { remove(root, key); }
   int get_rank(int key) const { return get_rank(root, key); }
@@ -149,5 +136,3 @@ struct Treap {
     push_up(x);
   }
 };
-
-#endif

@@ -1,20 +1,19 @@
-#ifndef SEGMENTTREE_H
-struct SegmentTree {
+struct segtree {
   using ll = long long;
   const int elementNum;
   const int *const arr;
   const int nodeNum;
   ll *t;
   ll *lazy;
-  SegmentTree() = delete;
-  SegmentTree(int n, int *_arr)
+  segtree() = delete;
+  segtree(int n, int *_arr)
       : elementNum{n},
         arr(_arr),
         nodeNum{n * 4},
         t(new ll[n * 4]),
         lazy(new ll[n * 4]){build(1, 1, elementNum);}
-  SegmentTree(const SegmentTree &) = delete;
-  SegmentTree(const SegmentTree &&) = delete;
+  segtree(const segtree &) = delete;
+  segtree(const segtree &&) = delete;
   ll query(int l, int r) { return query(l, r, 1, elementNum, 1); }
   void update(int l, int r, int x) { update(l, r, x, 1, elementNum, 1); }
 
@@ -66,4 +65,3 @@ struct SegmentTree {
     lazy[i] = 0;
   }
 };
-#endif

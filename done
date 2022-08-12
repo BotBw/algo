@@ -1,10 +1,10 @@
 # !/bin/bash
 rm test.out
-if test -f "codes/${1}"; then
+if test -f "Solutions/${1}"; then
     echo "${1} already exists.";
     exit;
 fi
-cat luogu.cpp > ${1}
-mv ${1} codes/
-git add codes/${1}
-cp template luogu.cpp
+cat solution.cpp > ${1}
+mv ${1} Solutions/
+git add Solutions/${1}
+cp template solution.cpp
