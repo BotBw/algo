@@ -2,7 +2,6 @@ using namespace std;
 #ifdef LOCAL
 #include "debug.h"
 #include "leet.h"
-#include "../mySTL/mySTL.h"
 #else
 #define debug(...)
 #endif
