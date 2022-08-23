@@ -115,4 +115,5 @@
 #include <unordered_set>
 #endif
 
+#define LOCAL
 #include "freq.h"
