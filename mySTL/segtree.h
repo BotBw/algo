@@ -41,15 +41,16 @@ class segtree {
     push_up(t[x].val, t[lc(x)].val, t[rc(x)].val);
   }
   
-  void _update(int x, int l, int r, void(*modifier)(int len, tag &)) {
+  template <typename modifier>
+  void _update(int x, int l, int r, modifier m) {
     if(l <= t[x].l && t[x].r <= r) {
-      modifier(len(x), t[x].val);
+      m(t[x].l, t[x].r, t[x].val);
       return;
     }
     push_down(t[x].val, t[lc(x)].val, len(lc(x)), t[rc(x)].val, len(rc(x)));
     int mi = (t[x].l + t[x].r) / 2;
-    if(l <= mi) _update(lc(x), l, r, modifier);
-    if(r >= mi + 1) _update(rc(x), l, r, modifier);
+    if(l <= mi) _update(lc(x), l, r, m);
+    if(r >= mi + 1) _update(rc(x), l, r, m);
     push_up(t[x].val, t[lc(x)].val, t[rc(x)].val);
   }
 
@@ -88,14 +89,16 @@ class segtree {
     build(1, lo, hi, init);
   }
 
-  void update(int x, void(*modifier)(int len, tag &)) {
+  template <typename modifier>
+  void update(int x, modifier m) {
     assert(lo <= x && x <= hi);
-    _update(1, x, x, modifier);
+    _update(1, x, x, m);
   }
 
-  void update(int l, int r, void(*modifier)(int len, tag &)) {
+  template <typename modifier>
+  void update(int l, int r, modifier m) {
     assert(l <= r && lo <= l && r <= hi);
-    _update(1, l, r, modifier);
+    _update(1, l, r, m);
   }
 
   tag query(int x) {
