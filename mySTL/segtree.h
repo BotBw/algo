@@ -40,7 +40,7 @@ class segtree {
     build(rc(x), mi + 1, r, init);
     push_up(t[x].val, t[lc(x)].val, t[rc(x)].val);
   }
-
+  
   void _update(int x, int l, int r, void(*modifier)(int len, tag &)) {
     if(l <= t[x].l && t[x].r <= r) {
       modifier(len(x), t[x].val);
@@ -94,7 +94,7 @@ class segtree {
   }
 
   void update(int l, int r, void(*modifier)(int len, tag &)) {
-    assert(lo <= l && r <= hi);
+    assert(l <= r && lo <= l && r <= hi);
     _update(1, l, r, modifier);
   }
 
@@ -104,7 +104,7 @@ class segtree {
   }
 
   tag query(int l, int r) {
-    assert(lo <= l && r <= hi);
+    assert(l <= r && lo <= l && r <= hi);
     return _query(1, l, r);
   }
 };
