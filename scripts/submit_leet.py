@@ -1,7 +1,7 @@
 from pathlib import Path
 
 solution = Path('solution.cpp').read_text()
-mySTL = ['dsu', 'segtree', 'CustomHash']
+mySTL = ['dsu', 'segtree', 'CustomHash', 'modint']
 check = dict.fromkeys(mySTL, False)
 for lib in mySTL:
   if lib in solution:
