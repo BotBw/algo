@@ -17,6 +17,7 @@ struct modint {
 
   static void setmod(int _MOD) { MOD = _MOD; }
   int getmod() const { return MOD; }
+  int getval() const { return val; }
   modint operator-() const { return val ? MOD - val : 0; }
   modint operator+(const modint& r) const {
     return modint(*this) += r;
