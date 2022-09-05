@@ -42,7 +42,7 @@ class segtree {
   }
   
   template <typename modifier>
-  void _update(int x, int l, int r, modifier m) {
+  void _update(int x, int l, int r, const modifier &m) {
     if(l <= t[x].l && t[x].r <= r) {
       m(t[x].l, t[x].r, t[x].val);
       return;
@@ -90,13 +90,13 @@ class segtree {
   }
 
   template <typename modifier>
-  void update(int x, modifier m) {
+  void update(int x, const modifier &m) {
     assert(lo <= x && x <= hi);
     _update(1, x, x, m);
   }
 
   template <typename modifier>
-  void update(int l, int r, modifier m) {
+  void update(int l, int r, const modifier &m) {
     assert(l <= r && lo <= l && r <= hi);
     _update(1, l, r, m);
   }
