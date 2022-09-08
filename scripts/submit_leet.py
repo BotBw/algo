@@ -17,7 +17,7 @@ with open('tmp.cpp', 'w') as f:
       f.write(lib_txt)
   with open('solution.cpp', 'r') as s:
     for line in s:
-      if line[0] == '#':
+      if line[0].count('#include'):
         continue
       if "main" in line:
         break
