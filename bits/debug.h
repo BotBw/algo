@@ -41,7 +41,15 @@ string to_string(A v) {
   res += "}";
   return res;
 }
- 
+
+string to_string(const vector<bool> &a) {
+  vector<int> res;
+  for(int i = 0; i < a.size(); i++) {
+    res.push_back(a[i]);
+  }
+  return to_string(res);
+}
+
 void debug_out() { cerr << endl; }
  
 template <typename Head, typename... Tail>
