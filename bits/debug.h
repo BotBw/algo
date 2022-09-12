@@ -44,7 +44,7 @@ string to_string(A v) {
 
 string to_string(const vector<bool> &a) {
   vector<int> res;
-  for(int i = 0; i < a.size(); i++) {
+  for(int i = 0; i < (int)a.size(); i++) {
     res.push_back(a[i]);
   }
   return to_string(res);
