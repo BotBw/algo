@@ -10,8 +10,6 @@ using namespace std;
 #define _FOR(i, a, b) for(int i = (a); i >= (int)(b); --i)
 #define INT_INF 0x3f3f3f3f
 #define LLONG_INF 0x3f3f3f3f3f3f3f3f
-#define pb(x) push_back(x)
-#define pf(x) push_front(x)
 typedef long long ll;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
