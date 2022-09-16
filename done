@@ -7,4 +7,5 @@ fi
 cat solution.cpp > ${1}
 mv ${1} Solutions/
 git add Solutions/${1}
+git commit -m "Add ${1}"
 cp template.cpp solution.cpp
