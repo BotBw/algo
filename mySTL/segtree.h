@@ -78,12 +78,10 @@ class segtree {
   }
 
   segtree(int _lo, int _hi, const vector<tag> &init): lo(_lo), hi(_hi), noPd(push_down == nullptr) {
-    int n = hi - lo + 1;
     build(1, lo, hi, init);
   }
 
   segtree(int _lo, int _hi, const tag *init): lo(_lo), hi(_hi), noPd(push_down == nullptr) {
-    int n = hi - lo + 1;
     build(1, lo, hi, init);
   }
 
