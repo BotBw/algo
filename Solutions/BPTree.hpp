@@ -21,32 +21,32 @@ class BPTree {
       return os;
     }
   };
+  static size_t globalNodeCnt;
 
-  static size_t node_cnt;
-  static size_t record_cnt;
+  node *root;
+  size_t nodeCnt;
 
-  static node *newNode() {
+  static node *newNodeGlobal() {
     // TODO: use disk pool
     return new node();
   }
+  // only for single node
+  static void deleteNodeGlobal(node *p) {
+    // TODO: use disk pool
+    globalNodeCnt--;
+    memset(p->child, 0, sizeof(p->child));
+    delete p;
+  }
+  node *newNode() {
+    nodeCnt++;
+    return newNodeGlobal();
+  }
 
   // only for single node
-  static void deleteNode(node *p) {
+  void deleteNode(node *p) {
     // TODO: use disk pool
-    node_cnt--;
-    delete p;
-  }
-
-  static _record *newRecord() {
-    // TODO: use disk pool
-    record_cnt++;
-    return new _record();
-  }
-
-  static void deleteRecord(_record *p) {
-    // TODO: use disk pool
-    record_cnt--;
-    delete p;
+    nodeCnt--;
+    deleteNodeGlobal();
   }
 
   void levelTraverse(node *cur) {
@@ -69,24 +69,6 @@ class BPTree {
       cout << endl;
       sz = nxt;
     }
-  }
-
-  node *root;
-  size_t sz;
-
-  _record *_searchRecord(node *cur, const _key &key) {
-    size_t i =
-        (size_t)(lower_bound(cur->keys, cur->keys + cur->cnt, key) - cur->keys);
-    if (cur->height == 0) {  // leaf node
-      if (key == cur->keys[i])
-        return (_record *)cur->child[i];
-      else
-        return nullptr;
-    }
-    if (i == 0 && key < cur->keys[0])
-      return _searchRecord((node *)cur->child[0], key);
-    else
-      return _searchRecord((node *)cur->child[i + 1], key);
   }
 
   pair<node *, size_t> _searchNode(node *cur, const _key &key) {
@@ -128,21 +110,21 @@ class BPTree {
       memcpy(tmpChild, ch1->child, sizeof(ch1->child));
 
       // insert new key and record
-      for(size_t j = N; j > i; j--) {
-        tmpKey[j] = tmpKey[j-1];
-        tmpChild[j] = tmpChild[j-1];
+      for (size_t j = N; j > i; j--) {
+        tmpKey[j] = tmpKey[j - 1];
+        tmpChild[j] = tmpChild[j - 1];
       }
       tmpKey[i] = key;
-      tmpChild[i] = (void*) record;
+      tmpChild[i] = (void *)record;
 
       // write to ch1 and ch2
       ch1->cnt = (N + 1) / 2;
-      for(size_t j = 0; j < ch1->cnt; j++) {
+      for (size_t j = 0; j < ch1->cnt; j++) {
         ch1->keys[j] = tmpKey[j];
         ch1->child[j] = tmpChild[j];
       }
       ch2->cnt = (N + 1) - ch1->cnt;
-      for(size_t j = 0; j < ch2->cnt; j++) {
+      for (size_t j = 0; j < ch2->cnt; j++) {
         ch2->keys[j] = tmpKey[j + ch1->cnt];
         ch2->child[j] = tmpChild[j + ch1->cnt];
       }
@@ -175,28 +157,28 @@ class BPTree {
       memcpy(tmpChild, ch1->child, sizeof(ch1->child));
 
       // insert new key and record
-      for(size_t j = N; j > i; j--) {
-        tmpKey[j] = tmpKey[j-1];
+      for (size_t j = N; j > i; j--) {
+        tmpKey[j] = tmpKey[j - 1];
         tmpChild[j + 1] = tmpChild[j];
       }
       tmpKey[i] = key;
-      tmpChild[i + 1] = (void*) ptr;
+      tmpChild[i + 1] = (void *)ptr;
 
       // took the (N + 1)/2 th key and pointer
       _key parentKey = tmpKey[(N + 1) / 2];
-      void* ch2Child = tmpChild[(N + 1)/2 + 1];
+      void *ch2Child = tmpChild[(N + 1) / 2 + 1];
       // write to ch1 and ch2
       ch1->cnt = (N + 1) / 2;
-      for(size_t j = 0; j < ch1->cnt; j++) {
+      for (size_t j = 0; j < ch1->cnt; j++) {
         ch1->keys[j] = tmpKey[j];
         ch1->child[j + 1] = tmpChild[j + 1];
       }
       ch2->cnt = (N + 1) - ch1->cnt - 1;
-      for(size_t j = 0; j < ch2->cnt; j++) {
+      for (size_t j = 0; j < ch2->cnt; j++) {
         ch2->keys[j] = tmpKey[j + ch1->cnt + 1];
         ch2->child[j + 1] = tmpChild[j + ch1->cnt + 2];
       }
-      
+
       // parent node
       node *parent = newNode();
       ch2->child[0] = ch2Child;
@@ -240,11 +222,15 @@ class BPTree {
   }
 
  public:
-  BPTree() : root{newNode()}, sz{0} {}
+  BPTree() : root{newNode()}, nodeCnt{0} {}
 
   ~BPTree() {
     // TODO
   }
+
+  size_t height() const { return root->height; }
+
+  size_t size() const { return nodeCnt; }
 
   void insert(const _key &key, _record *record) {
     size_t h = root->height;
@@ -262,13 +248,27 @@ class BPTree {
         root = p;
     }
   }
+
+  vector<_record *> query(const _key &lo, const _key &hi) {
+    auto tmp = _searchNode(root, lo);
+    node *p = tmp.first;
+    size_t i = tmp.second;
+
+    vector<_record *> ret;
+
+    while (p && p->keys[i] < hi) {
+      for (; i < p->cnt; i++) {
+        ret.push_back((_record *)p->child[i]);
+      }
+      p = (node *)p->child[N];
+      i = 0;
+    }
+    return ret;
+  }
 };
 
 template <typename _key, typename _record, int N>
-size_t BPTree<_key, _record, N>::node_cnt = 0;
-
-template <typename _key, typename _record, int N>
-size_t BPTree<_key, _record, N>::record_cnt = 0;
+size_t BPTree<_key, _record, N>::globalNodeCnt = 0;
 
 typedef BPTree<int, int, 3> tree;
 
@@ -283,6 +283,9 @@ void test1() {
     tr.levelTraverse(tr.root);
     cout << endl << endl << endl;
   }
+
+  cout << tr.height() << endl;
+  cout << tr.size() << endl;
 }
 
 void test2() {
@@ -294,10 +297,17 @@ void test2() {
     tr.levelTraverse(tr.root);
     cout << endl << endl << endl;
   }
+  cout << tr.height() << endl;
+  cout << tr.size() << endl;
+
+  auto ret = tr.query(7, 21);
+  for (auto v : ret) {
+    cout << *v << " ";
+  }
 }
 
 int main() {
-     test1();
-  // test2();
+  // test1();
+  test2();
   return 0;
 }
