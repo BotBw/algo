@@ -1,14 +1,11 @@
-## My solution repo
-
-cloc|github.com/AlDanial/cloc v 1.92  T=0.07 s (6125.4 files/s, 304885.9 lines/s)
+cloc|github.com/AlDanial/cloc v 1.92  T=0.07 s (6255.3 files/s, 314764.4 lines/s)
 --- | ---
 
 Language|files|blank|comment|code
 :-------|-------:|-------:|-------:|-------:
-C++|423|1967|518|18495
-C/C++ Header|13|74|27|561
+C++|446|2052|519|19163
+C/C++ Header|14|156|113|1052
 SQL|1|10|47|155
 JSON|3|0|0|134
 Python|2|6|0|42
-Markdown|1|2|0|12
-SUM:|443|2059|592|19399
+SUM:|466|2224|679|20546
