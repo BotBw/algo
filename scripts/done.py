@@ -3,6 +3,11 @@ import os
 import shutil
 import subprocess
 
+def gitAddCommit(filepath):
+  subprocess.run('cat "" > solution.py', shell=True)
+  subprocess.run('git add ' + filepath, shell=True)
+  subprocess.run(f'git commit -m "Add {filepath}"', shell=True)
+
 def done():
   n = len(sys.argv)
 
@@ -19,13 +24,17 @@ def done():
   postfix = filepath.split('.')[-1]
   
   if(postfix == 'cpp'):
+    if os.path.exists('test.out'):
+        subprocess.run('rm test.out', shell=True)
     shutil.copy2('solution.cpp', filepath)
     shutil.copy2('template.cpp', 'solution.cpp')
+    gitAddCommit(filepath)
     return
   
   if(postfix == 'py'):
     shutil.copy2('solution.py', filepath)
-    subprocess.run('cat "" > solution.py')
+    subprocess.run('cat "" > solution.py', shell=True)
+    gitAddCommit(filepath)
     return
   print(filepath + " Unknown file type")
 

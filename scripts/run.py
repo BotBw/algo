@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 def run():
   cpp = subprocess.check_output('git diff solution.cpp', shell=True)
@@ -9,6 +10,9 @@ def run():
       return
   
   if(len(cpp) > 0):
+     if os.path.exists('test.out'):
+        subprocess.run('rm test.out', shell=True)
+      
      subprocess.run('g++ solution.cpp -g -Wall -Wextra -Wno-sign-conversion -Wshadow -fsanitize=address,undefined -std=c++20 -o test.out', shell=True)
      subprocess.run('./test.out < input.txt', shell=True)
      return

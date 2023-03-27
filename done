@@ -1,7 +1,2 @@
 # !/bin/bash
-rm test.out
-
 python3 scripts/done.py ${1}
-
-git add Solutions/${1}
-git commit -m "Add ${1}"
