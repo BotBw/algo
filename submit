@@ -1,4 +1,2 @@
-touch tmp.cpp
-python3 scripts/submit.py
-cat tmp.cpp | pbcopy
-rm tmp.cpp
+# !/bin/bash
+python3 scripts/submit.py | pbcopy

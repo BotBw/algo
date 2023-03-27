@@ -1,23 +1,25 @@
-from pathlib import Path
+import subprocess
+import os
 
-solution = Path('solution.cpp').read_text()
-mySTL = ['dsu', 'segtree', 'CustomHash', 'modint']
-check = dict.fromkeys(mySTL, False)
-for lib in mySTL:
-  if lib in solution:
-    check[lib] = True
+from utils.submit_cpp import *
+from utils.submit_py import *
 
-with open('tmp.cpp', 'w') as f:
-  f.write('#include <bits/stdc++.h>\n')
-  freq_txt = Path('bits/freq.h').read_text()
-  f.write(freq_txt)
-  for lib in mySTL:
-    if check[lib]:
-      lib_txt = Path('mySTL/' + lib + '.h').read_text()
-      f.write(lib_txt)
-  with open('solution.cpp', 'r') as s:
-    for line in s:
-      if '#include' in line:
-        continue
-      f.write(line)
+def submit():
+  cpp = subprocess.check_output('git diff solution.cpp', shell=True)
+  py = subprocess.check_output('git diff solution.py', shell=True)
   
+  if(len(py) > 0 and len(cpp) > 0):
+      print('Not sure which file to submit')
+      return
+  
+  if(len(cpp) > 0):
+     submit_cpp()
+     return
+  
+  if(len(py) > 0):
+     submit_py()
+     return
+  
+  print('Nothing to submit')
+
+submit()

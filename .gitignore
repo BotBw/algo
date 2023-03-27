@@ -6,3 +6,4 @@ output.txt
 a.out
 test.out
 test.out.dSYM
+__pycache__

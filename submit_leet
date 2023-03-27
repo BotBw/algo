@@ -1,4 +1,0 @@
-touch tmp.cpp
-python3 scripts/submit_leet.py
-cat tmp.cpp | pbcopy
-rm tmp.cpp
