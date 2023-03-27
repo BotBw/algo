@@ -33,7 +33,7 @@ def done():
   
   if(postfix == 'py'):
     shutil.copy2('solution.py', filepath)
-    subprocess.run('cat "" > solution.py', shell=True)
+    subprocess.run('cat template.py > solution.py', shell=True)
     gitAddCommit(filepath)
     return
   print(filepath + " Unknown file type")
