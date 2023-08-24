@@ -44,6 +44,40 @@ public:
         return res;
     }
 };
+class Solution {
+public:
+    static const int N = 10;
+    int memo[N][1 << N];
+    vector<int> digi;
+    int f(int i, int selected, bool leading, bool lim) {
+        if(i == -1) {
+            return !leading;
+        }
+        // if(!lim && !leading && memo[i][selected] != -1) return memo[i][selected];
+        int res = 0;
+        if(leading) {
+            res += f(i - 1, selected, true, false);
+        }
+        int hi = lim ? digi[i] : 9;
+        for(int x = leading; x <= hi; x++) {
+            if(!(selected >> x & 1)) {
+                res += f(i - 1, selected | (1 << x), false, lim && x == hi);
+            }
+        }
+        // if(!lim && !leading) {
+        //     memo[i][selected] = res;
+        // }
+        return res;
+    }
+    int countSpecialNumbers(int n) {
+        memset(memo, -1, sizeof memo);
+        while(n) {
+            digi.push_back(n % 10);
+            n /= 10;
+        }
+        return f(digi.size() - 1, 0, true, true);
+    }
+};
 
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
