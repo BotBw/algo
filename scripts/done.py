@@ -26,13 +26,13 @@ def done():
     if os.path.exists('test.out'):
         subprocess.run('rm test.out', shell=True)
     shutil.copy2('solution.cpp', filepath)
-    shutil.copy2('template.cpp', 'solution.cpp')
+    shutil.copy2('templates/template.cpp', 'solution.cpp')
     gitAddCommit(filepath)
     return
   
   if(postfix == 'py'):
     shutil.copy2('solution.py', filepath)
-    shutil.copy2('template.py', 'solution.py')
+    shutil.copy2('templates/template.py', 'solution.py')
     gitAddCommit(filepath)
     return
   print(filepath + " Unknown file type")
